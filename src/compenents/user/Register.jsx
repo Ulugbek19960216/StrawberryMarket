@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box, Button, Typography } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
-
+import axios from "axios";
 
 function Register() {
     
@@ -16,7 +16,7 @@ function Register() {
     }
 
     const gap = {
-        marginBottom: "20px"
+        marginBottom: "10px",
     }
     const textStyle ={
         color: "#9C4A57",
@@ -48,7 +48,6 @@ function Register() {
             const response = await axios.post("/api/register", formData);
             if(response) {
                 console.log("Registration successful:", response.data)
-                return redirect("/login");
             }
         } catch (error) {
             console.error("Registration failed: ", error.message );
@@ -63,7 +62,7 @@ function Register() {
                <Logo/>
                 <form onSubmit={handleSubmit}>
                     <Box style={gap}>
-                        <Typography>Email</Typography>
+                        <Typography sx={gap}>Email</Typography>
                         <input 
                             name = "email"
                             style={inputCustom}
@@ -71,11 +70,10 @@ function Register() {
                             value={formData.email}
                             onChange={handleChange}
                             >
-                            
                         </input>
                     </Box>
                     <Box style={gap}>
-                        <Typography>
+                        <Typography sx={gap}>
                             Password
                         </Typography>
                         <input 
@@ -85,11 +83,10 @@ function Register() {
                             value={formData.password}
                             onChange={handleChange}
                             >
-
                             </input>
                     </Box>
                     <Box style={gap}>
-                        <Typography>
+                        <Typography sx={gap}>
                             Confirm Password
                         </Typography>
                         <input style={inputCustom} placeholder="************"></input>
@@ -98,7 +95,7 @@ function Register() {
                         <Typography sx={textStyle}>Use at least 8 characters.</Typography>
                     </Box>
                     <Box style={gap}> 
-                        <Button variant="contained" type="submit" sx={{ width: "502px", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Sign up</Button>
+                        <Button variant="contained"type="submit" sx={{ width: "502px", marginBottom: "10px", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Sign Up</Button>
                     </Box>
                     <Box style={gap} sx={textCenter}>
                         <Typography sx={textStyle}>By creating an account, you agree to strawberry's</Typography>
