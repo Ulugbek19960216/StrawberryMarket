@@ -95,7 +95,7 @@ function Register() {
                         <Typography sx={textStyle}>Use at least 8 characters.</Typography>
                     </Box>
                     <Box style={gap}> 
-                        <Button variant="contained"type="submit" sx={{ width: "502px", marginBottom: "10px", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Sign Up</Button>
+                        <Button variant="contained"type="submit" sx={{ width: "502px", marginBottom: "10px", textTransform: "none", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Sign Up</Button>
                     </Box>
                     <Box style={gap} sx={textCenter}>
                         <Typography sx={textStyle}>By creating an account, you agree to strawberry's</Typography>
