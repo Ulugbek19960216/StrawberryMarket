@@ -59,7 +59,7 @@ function Register() {
         <Box></Box>
         <Box sx= {{display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#F7FAFC", height: "950px"}}>
             <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#FFFFFF", width: "525px", height: "836px", borderRadius: "20px"}}>
-               <Logo/>
+               <Logo name="Create account"/>
                 <form onSubmit={handleSubmit}>
                     <Box style={gap}>
                         <Typography sx={gap}>Email</Typography>
