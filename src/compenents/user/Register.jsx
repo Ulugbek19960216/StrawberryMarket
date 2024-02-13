@@ -82,6 +82,7 @@ function Register() {
                             placeholder='************'
                             value={formData.password}
                             onChange={handleChange}
+                            type="password"
                             >
                             </input>
                     </Box>
@@ -89,7 +90,11 @@ function Register() {
                         <Typography sx={gap}>
                             Confirm Password
                         </Typography>
-                        <input style={inputCustom} placeholder="************"></input>
+                        <input 
+                            style={inputCustom}
+                            placeholder="************"
+                            type="password"
+                            ></input>
                     </Box>
                     <Box style={gap}>
                         <Typography sx={textStyle}>Use at least 8 characters.</Typography>

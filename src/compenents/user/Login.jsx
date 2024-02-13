@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Box, Button, Typography } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
+import axios from "axios";
+import Cookies from "js-cookie";
+
 
 
 function Login() {
-
-  const handleSubmit = (event) => {
-
-  }
-
-
 
   const inputCustom = {
     width: "480px",
@@ -19,34 +16,57 @@ function Login() {
     backgroundColor: "#FCF7FA",
     border: "1px solid #E8CFD4",
     padding: "0 10px"
-}
+};
 
 const gap = {
     marginBottom: "10px",
-}
+};
 const textStyle ={
     color: "#9C4A57",
     fontSize: "12px",
     fontFamily: "Manrope"
-}
+};
 const textCenter = {
     textAlign: "center"
-}
+};
 
 const [formData, setFormData] = useState({
     email: "",
     password: "",
-})
+});
+
+const [error, setError] = useState("");
 
 function handleChange(event){
-
   const {name, value} = event.target;
-
   setFormData({...formData, [name]: value});
+};
 
+
+const handleLogin = async (email, password) => {
+    
+    try {
+        const response = await axios.post("api", {
+            email,
+            password,
+        });
+        const data = response.data;
+        if(response.status === 200) {
+            Cookies.set("token", data.token, { secure: true, httpOnly: true, sameSite: "strict"});
+            // Redirect to hompage
+        } else {
+            setError(data.message || "Login failed");
+        }
+    } catch (error) {
+        setError("An error occured during login. Please try again. ");
+    }
+};
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+    setError("");
+    handleLogin(formData.email, formData.password);
 }
-
-
   return (
     <Box>
       <Box></Box>
@@ -75,6 +95,7 @@ function handleChange(event){
                             placeholder='************'
                             value={formData.password}
                             onChange={handleChange}
+                            type="password"
                             >
                             </input>
                     </Box>
@@ -94,6 +115,11 @@ function handleChange(event){
                     <Typography sx={textStyle}>Or continue with</Typography>
                 </Box>
                 <AuthIcons/>
+                {error && (
+                    <Box style={gap} sx={{ color: "red", textAlign: "center" }}>
+                        <Typography>{error}</Typography>
+                    </Box>
+                )}
             </Box>
         </Box>
     </Box>
