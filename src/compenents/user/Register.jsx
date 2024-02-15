@@ -3,8 +3,10 @@ import { Box, Button, Typography } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
 import axios from "axios";
+import PasswordChecklist from 'react-password-checklist';
 
 function Register() {
+    const [isHide, setIsHide] = useState(false);
     
     const inputCustom = {
         width: "480px",
@@ -30,14 +32,19 @@ function Register() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
+        confirmPassword: "",
     })
 
-
+   
     function handleChange(event){
 
         const {name, value} = event.target;
 
         setFormData({...formData, [name]: value});
+
+        if(name === "password") {
+            setIsHide(!!value);
+        }
 
     }
 
@@ -53,6 +60,7 @@ function Register() {
             console.error("Registration failed: ", error.message );
         }
     }
+    
 
   return (
     <Box>
@@ -91,14 +99,22 @@ function Register() {
                             Confirm Password
                         </Typography>
                         <input 
+                            name='confirmPassword'
                             style={inputCustom}
                             placeholder="************"
+                            onChange={handleChange}
+                            value={formData.confirmPassword}
                             type="password"
                             ></input>
+                        {(isHide) ? (<PasswordChecklist 
+                           rules={["minLength","specialChar","number","capital","match"]}
+                           minLength={8}
+                           value={formData.password}
+                           valueAgain={formData.confirmPassword}
+                           onChange={(isValid) => {}}
+                        />): null}  
                     </Box>
-                    <Box style={gap}>
-                        <Typography sx={textStyle}>Use at least 8 characters.</Typography>
-                    </Box>
+                   
                     <Box style={gap}> 
                         <Button variant="contained"type="submit" sx={{ width: "502px", marginBottom: "10px", textTransform: "none", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Sign Up</Button>
                     </Box>
