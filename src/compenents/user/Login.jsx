@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {NavLink, Redirect} from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
 import axios from "axios";
 import Cookies from "js-cookie";
+
 
 
 
@@ -104,16 +106,14 @@ const handleSubmit = (event) => {
                             >
                             </input>
                     </Box>
-                    <Box style={gap}>
-                        <Typography sx={textStyle}>Use at least 8 characters.</Typography>
-                    </Box>
                     <Box style={gap}> 
                         <Button variant="contained"type="submit" sx={{ width: "502px", marginBottom: "10px", textTransform: "none", height: "40px", '&:hover': {backgroundColor: "#F20D33"}, borderRadius: "12px", backgroundColor: "#F20D33"}}>Login</Button>
                     </Box>
                    
                     <Box style={gap} sx={{display: "flex", justifyContent: "space-between"}}> 
                         <Typography sx={textStyle}>Forgot Password?</Typography>
-                        <Typography sx={textStyle}>Sign up</Typography>
+
+                        <Typography sx={textStyle}> <NavLink style={{textDecoration: "none"}} to="/signup"> Sign up </NavLink></Typography>
                     </Box>
                 </form>
                 <Box style={gap} sx={textCenter}>

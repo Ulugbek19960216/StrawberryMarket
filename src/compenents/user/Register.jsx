@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {NavLink} from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
@@ -126,7 +127,7 @@ function Register() {
                     </Box>
                     <Box style={gap} sx={{display: "flex", justifyContent: "space-between"}}> 
                         <Typography sx={textStyle}>Already have account?</Typography>
-                        <Typography sx={textStyle}>Sign in</Typography>
+                        <Typography sx={textStyle}> <NavLink  style={{textDecoration: "none"}}to="/">Sign in</NavLink></Typography>
                     </Box>
                 </form>
                 <Box style={gap} sx={textCenter}>
