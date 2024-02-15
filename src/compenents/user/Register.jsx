@@ -134,6 +134,7 @@ function Register() {
                     <Typography sx={textStyle}>Or continue with</Typography>
                 </Box>
                 <AuthIcons/>
+                <NavLink to="/verifyEmail">VerifyEmail</NavLink>
             </Box>
         </Box>
     </Box>

@@ -48,13 +48,13 @@ function handleChange(event){
 const handleLogin = async (email, password) => {
     
     try {
-        const response = await axios.post("api", {
+        const response = await axios.post("URL", {
             email,
             password,
         });
         const data = response.data;
         if(response.status === 200) {
-            Cookies.set("token", data.token, { secure: true, httpOnly: true, sameSite: "strict"});
+            Cookies.set("token", data.Accesstoken, { secure: true, sameSite: "strict"});
             // Redirect to hompage
         } else {
             setError(data.message || "Login failed");
