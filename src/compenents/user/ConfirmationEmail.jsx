@@ -1,7 +1,7 @@
 import { Typography, Box, Button } from '@mui/material'
 import React, { useState, useRef, useEffect } from 'react'
 import axios from "axios";
-
+import { NavLink } from 'react-router-dom';
 
 function ConfirmationEmail() {
     const [otp, setOTP] = useState("");
@@ -67,7 +67,6 @@ function ConfirmationEmail() {
 
     const handleResendOTP = () => {
         fetchOTP();
-
     }
 
   return (
@@ -175,14 +174,14 @@ function ConfirmationEmail() {
                     color: "#121417",
                     fontWeight: "Bold",
                     width: "110px",
-                    borderRadius: "12px"}}variant="contained">Previous</Button>
+                    borderRadius: "12px"}}variant="contained"><NavLink style={{textDecoration: "none", color: "black"}} to="/signup">Previous</NavLink></Button>
                 <Button sx={{  
                     '&:hover': {backgroundColor: '#ffffff', },
                     backgroundColor: "#F0F2F5",
                     color: "#121417",
                     fontWeight: "Bold",
                     width: "84px",
-                    borderRadius: "12px"}} variant="contained">Next</Button>
+                    borderRadius: "12px"}} variant="contained"> <NavLink style={{textDecoration: "none", color: "black"}} to="/">Next</NavLink></Button>
             </Box>
 
         </Box>

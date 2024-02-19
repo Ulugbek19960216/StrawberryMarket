@@ -111,9 +111,9 @@ const handleSubmit = (event) => {
                     </Box>
                    
                     <Box style={gap} sx={{display: "flex", justifyContent: "space-between"}}> 
-                        <Typography sx={textStyle}>Forgot Password?</Typography>
+                        <Typography sx={textStyle}><NavLink style={{textDecoration: "none", color: "#9C4A57"}} to="/ForgotPassword">Forgot Password?</NavLink></Typography>
 
-                        <Typography sx={textStyle}> <NavLink style={{textDecoration: "none"}} to="/signup"> Sign up </NavLink></Typography>
+                        <Typography sx={textStyle}> <NavLink style={{textDecoration: "none", color: "#9C4A57",}} to="/signup"> Sign up </NavLink></Typography>
                     </Box>
                 </form>
                 <Box style={gap} sx={textCenter}>
