@@ -81,7 +81,8 @@ function ForgotPassword() {
                     textTransform: "none",
                     fontSize: "16px",
                     fontWeight: "bold",
-                    letterSpacing: "0.24px"
+                    letterSpacing: "0.24px",
+                    '&:hover': {backgroundColor: "#F20D33"}
                 }}>Send reset link</Button>
             </Box>
         </Box>
