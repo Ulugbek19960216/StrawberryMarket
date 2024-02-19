@@ -9,6 +9,7 @@ import {
 import Register from './user/Register';
 import Login from "./user/Login";
 import VerifyEmail from "./user/ConfirmationEmail";
+import Homepage from "./pages/Homepage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index path="/" element={<Login/>}/>
       <Route  path="signup" element={<Register/>}/>
       <Route path="verifyEmail" element={<VerifyEmail/>}/>
+      <Route path="Homepage" element={<Homepage/>}/>
     </Route>
   )
 )

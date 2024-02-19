@@ -7,6 +7,7 @@ function ConfirmationEmail() {
     const [otp, setOTP] = useState("");
     const [code, setCode] = useState(["", "", "", ""]);
     const [otpError, setOtpError] = useState(null);
+    const [timer, setTimer] = useState(120)
     const otpBoxReference = useRef([]);
     const numberOfDigits = code.length;
 
@@ -42,13 +43,32 @@ function ConfirmationEmail() {
         }
       }
 
+      useEffect(() => {
+        const intervalId = setInterval(()=> {
+            if (timer > 0) {
+                setTimer(timer - 1);
+            }
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }, [timer]);
+
+      const minutes = Math.floor(timer / 60);
+      const seconds = timer % 60;
+
       useEffect(() => { 
-        if(code.join("") !== "" && code.join("") !== otp){
-          setOtpError("❌ Wrong OTP Please Check Again")
+        const enteredOTP = code.join("");
+        if( enteredOTP.length === 4 && enteredOTP !== otp) {
+                setOtpError("❌ Wrong OTP Please Check Again")
         }else{
           setOtpError(null)
         } 
+
        }, [code, otp]);
+
+    const handleResendOTP = () => {
+        fetchOTP();
+
+    }
 
   return (
     <Box 
@@ -87,7 +107,6 @@ function ConfirmationEmail() {
                     width: "512",
                     height: "80px",
                     display: "flex",
-                    marginBottom: "10px",
                     alignItem: "center",
                     justifyConten: "center"}}>
 
@@ -114,14 +133,15 @@ function ConfirmationEmail() {
                     </input>
                 ))}
             </Box>
-            <p className={`text-lg text-white mt-4 ${otpError ? 'error-show' : ''}`}>{otpError}</p>
+            <p className={`text-lg text-white  ${otpError ? 'error-show' : ''}`}>{otpError}</p>
             <Box sx={{
                 width: "218px",
                 height: "26px",
                 marginBottom: "40px"}}>
                 <Typography sx={{
                     color: "red",
-                    fontWeight: "bold"}}>05:00</Typography>
+                    fontWeight: "bold", 
+                    textAlign: "left"}}> {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</Typography>
             </Box>
 
             <Box sx={{
@@ -134,10 +154,15 @@ function ConfirmationEmail() {
                     color: "#637587",
                     fontSize: "14px",
                     fontFamily: "Manrope" }}>I didn't receive a code</Typography></Box>
-                <Box> <Typography sx={{
+                <Box> <Button 
+                onClick={handleResendOTP}
+                disabled={timer > 0} 
+                sx={{
                     color: "#637587",
                     fontSize: "14px",
-                    fontFamily: "Manrope" }}>Resend</Typography></Box>
+                    height: "14px",
+                    textTransform: "capitalize",
+                    fontFamily: "Manrope" }}>Resend</Button></Box>
             </Box>
             <Box sx={{
                 display: "flex",
