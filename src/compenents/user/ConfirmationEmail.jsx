@@ -83,7 +83,7 @@ function ConfirmationEmail() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            height: "450px",
+            height: "400px",
             width: "512px",
             borderRadius: "20px",
             backgroundColor: "white",
@@ -142,27 +142,6 @@ function ConfirmationEmail() {
                     fontWeight: "bold", 
                     textAlign: "left"}}> {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</Typography>
             </Box>
-
-            <Box sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "500px",
-                height: "25px",
-                marginBottom: "35px"}}>
-                <Box><Typography sx={{
-                    color: "#637587",
-                    fontSize: "14px",
-                    fontFamily: "Manrope" }}>I didn't receive a code</Typography></Box>
-                <Box> <Button 
-                onClick={handleResendOTP}
-                disabled={timer > 0} 
-                sx={{
-                    color: "#637587",
-                    fontSize: "14px",
-                    height: "14px",
-                    textTransform: "capitalize",
-                    fontFamily: "Manrope" }}>Resend</Button></Box>
-            </Box>
             <Box sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -175,13 +154,16 @@ function ConfirmationEmail() {
                     fontWeight: "Bold",
                     width: "110px",
                     borderRadius: "12px"}}variant="contained"><NavLink style={{textDecoration: "none", color: "black"}} to="/signup">Previous</NavLink></Button>
-                <Button sx={{  
+                <Button 
+                onClick={handleResendOTP}
+                disabled={timer > 0} 
+                sx={{  
                     '&:hover': {backgroundColor: '#ffffff', },
                     backgroundColor: "#F0F2F5",
                     color: "#121417",
                     fontWeight: "Bold",
                     width: "84px",
-                    borderRadius: "12px"}} variant="contained"> <NavLink style={{textDecoration: "none", color: "black"}} to="/">Next</NavLink></Button>
+                    borderRadius: "12px"}} variant="contained"> <NavLink style={{textDecoration: "none", color: "black"}} to="/">Resend</NavLink></Button>
             </Box>
 
         </Box>

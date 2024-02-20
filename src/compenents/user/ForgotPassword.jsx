@@ -66,6 +66,9 @@ function ForgotPassword() {
                 <input style={{
                     width: "480px",
                     height: "56px",
+                    padding: "0 10px",
+                    fontFamily: "Manrope",
+                    fontSize: "18px",
                     borderRadius: "12px",
                     border: "3px solid #F1F1F1"
                 }}></input>
@@ -83,7 +86,7 @@ function ForgotPassword() {
                     fontWeight: "bold",
                     letterSpacing: "0.24px",
                     '&:hover': {backgroundColor: "#F20D33"}
-                }}>Send reset link</Button>
+                }}>Recovery</Button>
             </Box>
         </Box>
     </Box>
