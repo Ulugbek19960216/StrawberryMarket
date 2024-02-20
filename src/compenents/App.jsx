@@ -6,7 +6,7 @@ import {
   RouterProvider
 } from "react-router-dom";
 
-import Register from './user/Register';
+import Register from './user/UserRegister/Register';
 import Login from "./user/Login";
 import VerifyEmail from "./user/ConfirmationEmail";
 import Homepage from "./pages/Homepage";
