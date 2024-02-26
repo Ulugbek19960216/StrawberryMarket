@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {NavLink, Redirect} from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, Paper } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
 import axios from "axios";
@@ -73,7 +73,7 @@ const handleSubmit = (event) => {
     <Box>
       <Box></Box>
       <Box sx= {{display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#F7FAFC", height: "950px"}}>
-            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#FFFFFF", width: "525px", height: "636px", borderRadius: "20px"}}>
+            <Paper  elevation="4" sx={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#FFFFFF", width: "532px", height: "636px", borderRadius: "20px"}}>
                <Logo name="Qulupnay"/>
                {error && (
                     <Box style={gap} sx={{ color: "red", textAlign: "center" }}>
@@ -111,7 +111,7 @@ const handleSubmit = (event) => {
                     </Box>
                    
                     <Box style={gap} sx={{display: "flex", justifyContent: "space-between"}}> 
-                        <Typography sx={textStyle}><NavLink style={{textDecoration: "none", color: "#9C4A57"}} to="/ForgotPassword">Forgot Password?</NavLink></Typography>
+                        <Typography sx={textStyle}><NavLink style={{textDecoration: "none", color: "#9C4A57"}} to="/passwordRecovery">Forgot Password?</NavLink></Typography>
 
                         <Typography sx={textStyle}> <NavLink style={{textDecoration: "none", color: "#9C4A57",}} to="/signup"> Sign up </NavLink></Typography>
                     </Box>
@@ -121,7 +121,7 @@ const handleSubmit = (event) => {
                 </Box>
                 <AuthIcons/>
                 
-            </Box>
+            </Paper>
         </Box>
     </Box>
   )

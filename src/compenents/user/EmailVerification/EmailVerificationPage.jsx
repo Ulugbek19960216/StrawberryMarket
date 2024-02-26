@@ -1,15 +1,22 @@
-import { Typography, Box, Button } from '@mui/material'
+import { Typography, Box, Button, Paper } from '@mui/material'
 import React, { useState, useRef, useEffect } from 'react'
-import axios from "axios";
 import { NavLink } from 'react-router-dom';
+import axios from "axios";
+
+
+
 
 function ConfirmationEmail() {
     const [otp, setOTP] = useState("");
     const [code, setCode] = useState(["", "", "", ""]);
     const [otpError, setOtpError] = useState(null);
-    const [timer, setTimer] = useState(120)
     const otpBoxReference = useRef([]);
     const numberOfDigits = code.length;
+    const [timer, setTimer] = useState(() => {
+        const storedTimer = localStorage.getItem('timer');
+        return storedTimer ? parseInt(storedTimer) : 120;
+    });
+    const [intervalId, setIntervalId] = useState(null);
 
 
 
@@ -43,17 +50,6 @@ function ConfirmationEmail() {
         }
       }
 
-      useEffect(() => {
-        const intervalId = setInterval(()=> {
-            if (timer > 0) {
-                setTimer(timer - 1);
-            }
-        }, 1000);
-        return () => clearInterval(intervalId);
-      }, [timer]);
-
-      const minutes = Math.floor(timer / 60);
-      const seconds = timer % 60;
 
       useEffect(() => { 
         const enteredOTP = code.join("");
@@ -65,9 +61,43 @@ function ConfirmationEmail() {
 
        }, [code, otp]);
 
+       useEffect(() => {
+        const id = setInterval(() => {
+            if (timer > 0) {
+                setTimer(prevTimer => prevTimer - 1);
+            }
+        }, 1000);
+        
+        setIntervalId(id);
+
+        return () => {
+            clearInterval(id);
+        };
+    }, [timer]);
+
+    useEffect(() => {
+        if (timer === 0) {
+            localStorage.removeItem('timer'); // Clear timer from local storage when it reaches 0
+        } else {
+            localStorage.setItem('timer', timer.toString()); // Store timer value in local storage
+        }
+    }, [timer]);
+      
+    const minutes = Math.floor(timer / 60);
+    const seconds = timer % 60;
+
+    const resetTimer = () => {
+        clearInterval(intervalId);
+        setTimer(120);
+        localStorage.setItem("timer", "120");
+    };
+
     const handleResendOTP = () => {
         fetchOTP();
+        resetTimer();
     }
+
+   
 
   return (
     <Box 
@@ -79,7 +109,7 @@ function ConfirmationEmail() {
             backgroundColor: "#F0F2F5",
             boxSizing: "border-box"
         }}>
-        <Box sx={{
+        <Paper elevation="4" sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -141,7 +171,7 @@ function ConfirmationEmail() {
                     color: "red",
                     fontWeight: "bold", 
                     textAlign: "left"}}> {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</Typography>
-            </Box>
+    </Box>
             <Box sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -155,18 +185,18 @@ function ConfirmationEmail() {
                     width: "110px",
                     borderRadius: "12px"}}variant="contained"><NavLink style={{textDecoration: "none", color: "black"}} to="/signup">Previous</NavLink></Button>
                 <Button 
-                onClick={handleResendOTP}
-                disabled={timer > 0} 
-                sx={{  
+                    onClick={handleResendOTP}
+                         disabled={localStorage.getItem("timer") > 0} 
+                    sx={{  
                     '&:hover': {backgroundColor: '#ffffff', },
                     backgroundColor: "#F0F2F5",
                     color: "#121417",
                     fontWeight: "Bold",
                     width: "84px",
-                    borderRadius: "12px"}} variant="contained"> <NavLink style={{textDecoration: "none", color: "black"}} to="/">Resend</NavLink></Button>
+                    borderRadius: "12px"}} variant="contained">Resend</Button>
             </Box>
 
-        </Box>
+        </Paper>
     </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { Typography, Box, Button } from '@mui/material'
+import { Typography, Box, Button, Paper } from '@mui/material'
 import React from 'react'
 
 function ForgotPassword() {
@@ -12,7 +12,7 @@ function ForgotPassword() {
         backgroundColor: "#F7FAFC"
     }}>
         <Box></Box>
-        <Box sx={{
+        <Paper elevation="4" sx={{
             display: "flex",
             flexDirection: "column",
             padding: "15px",
@@ -88,7 +88,7 @@ function ForgotPassword() {
                     '&:hover': {backgroundColor: "#F20D33"}
                 }}>Recovery</Button>
             </Box>
-        </Box>
+        </Paper>
     </Box>
   )
 }

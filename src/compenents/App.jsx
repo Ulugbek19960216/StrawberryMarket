@@ -8,7 +8,7 @@ import {
 
 import Register from './user/UserRegister/Register';
 import Login from "./user/Login";
-import VerifyEmail from "./user/ConfirmationEmail";
+import VerifyEmail from "./user/EmailVerification/EmailVerificationPage";
 import Homepage from "./pages/Homepage";
 import ForgotPassword from './user/ForgotPassword';
 
