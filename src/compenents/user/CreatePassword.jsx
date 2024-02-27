@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Box, Button,Typography, Paper, Input } from '@mui/material';
+import { Box, Button,Typography, Paper } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import PasswordChecklist from 'react-password-checklist';
 
@@ -49,6 +49,7 @@ const CreatePassword = props => {
                 textAlign: "left",
                 width: "512px",
                 height: "50px",
+                padding: " 0px 10px",
                 mt: "30px",
                 }}>
                 <Typography sx={{
@@ -64,7 +65,7 @@ const CreatePassword = props => {
             <Box sx={{
                 width: "512px",
                 height: "60px",
-                padding: "10px",
+                padding: "0px 10px",
             }}>
                 <Typography sx={{
                     fontSize: "16px",
@@ -76,10 +77,10 @@ const CreatePassword = props => {
             </Box>
             <Box sx={{
                 width: "512px",
-                height: "112px",
+                height: "200px",
                 padding: "10px"
             }}>
-
+           
             <form onSubmit={handleSubmit}>
                 <Typography sx={{
                     fontWeight: "700",
@@ -89,7 +90,7 @@ const CreatePassword = props => {
                     marginBottom: "10px"
                 }}>Password</Typography>
                 
-                <Input
+                <input
                     type="password"
                     name="password"
                     onChange={handleChangePassword}
@@ -98,11 +99,12 @@ const CreatePassword = props => {
                     width: "480px",
                     height: "56px",
                     padding: "0 10px",
+                    marginBottom: "10px",
                     fontFamily: "Manrope",
                     fontSize: "18px",
                     borderRadius: "12px",
                     border: "3px solid #F1F1F1"
-                }}></Input>
+                }}></input>
                 <Typography sx={{
                     fontWeight: "700",
                     fontSize: "16px",
@@ -111,9 +113,9 @@ const CreatePassword = props => {
                     marginBottom: "10px"
                 }}><label>Confirm Password</label></Typography>
                 
-                <Input
+                <input
                     type="password"
-                    name="ConfirmPassword"
+                    name="confirmPassword"
                     onChange={handleChangePassword}
                     value = {formPassword.confirmPassword}
                 style={{
@@ -124,9 +126,9 @@ const CreatePassword = props => {
                     fontSize: "18px",
                     borderRadius: "12px",
                     border: "3px solid #F1F1F1"
-                }}></Input>
+                }}></input>
 
-                {isHiden && (
+                 {isHiden && (
                     <PasswordChecklist
                         rules={[
                             'minLength',
@@ -140,22 +142,24 @@ const CreatePassword = props => {
                         valueAgain={formPassword.confirmPassword}
                         onChange={(isValid) => {}}
                 />
-            )}
+            )} 
             </form>    
             </Box>
             <Box sx={{
-                padding: "10px",
+                display: "flex",
+                justifyContent: "end"
             }}>
                  <Button variant='contained' sx={{
                     width: "84px",
                     height: "40px",
+                    marginRight: "10px",
                     borderRadius: "12px",
                     backgroundColor: "#E8E8F2",
                     textTransform: "none",
                     fontSize: "14px",
                     fontWeight: "bold",
                     letterSpacing: "0.24px",
-                    '&:hover': {backgroundColor: "#F20D33"}
+                    '&:hover': {backgroundColor: "#E8E8F2"}
                 }}><NavLink style={{textDecoration: "none", color: "black"}} to="/" >Cancel</NavLink></Button>
                 <Button variant='contained' sx={{
                     width: "84px",
