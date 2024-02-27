@@ -1,8 +1,15 @@
 import { Typography, Box, Button, Paper } from '@mui/material'
-import React from 'react'
+import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react'
 
 function ForgotPassword() {
+    const [userEmail, setUserEmail] = useState(""); 
 
+
+    function handleChange(event) {
+        const value = event.target.value;
+        setUserEmail(value)
+    }
   return (
     <Box sx={{
         display: "flex",
@@ -63,7 +70,13 @@ function ForgotPassword() {
                     fontFamily: "Manrope",
                     marginBottom: "10px"
                 }}>Email</Typography>
-                <input style={{
+                
+                <input 
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    value = {userEmail}
+                style={{
                     width: "480px",
                     height: "56px",
                     padding: "0 10px",
@@ -72,6 +85,8 @@ function ForgotPassword() {
                     borderRadius: "12px",
                     border: "3px solid #F1F1F1"
                 }}></input>
+                <Typography></Typography>
+                
             </Box>
             <Box sx={{
                 padding: "10px",
@@ -86,7 +101,8 @@ function ForgotPassword() {
                     fontWeight: "bold",
                     letterSpacing: "0.24px",
                     '&:hover': {backgroundColor: "#F20D33"}
-                }}>Recovery</Button>
+                }}><NavLink style={{textDecoration: "none", color: "white"}} to="/verifyEmail" >Recovery</NavLink></Button>
+
             </Box>
         </Paper>
     </Box>
