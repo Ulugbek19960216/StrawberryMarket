@@ -110,7 +110,7 @@ function ConfirmationEmail() {
             }}
         >
             <Paper
-                elevation="4"
+                elevation={4}
                 sx={{
                     display: "flex",
                     flexDirection: "column",

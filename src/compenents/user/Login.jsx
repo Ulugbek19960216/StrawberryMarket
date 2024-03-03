@@ -73,7 +73,7 @@ const handleSubmit = (event) => {
     <Box>
       <Box></Box>
       <Box sx= {{display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#F7FAFC", height: "950px"}}>
-            <Paper  elevation="4" sx={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#FFFFFF", width: "532px", height: "636px", borderRadius: "20px"}}>
+            <Paper  elevation={4} sx={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#FFFFFF", width: "532px", height: "636px", borderRadius: "20px"}}>
                <Logo name="Qulupnay"/>
                {error && (
                     <Box style={gap} sx={{ color: "red", textAlign: "center" }}>

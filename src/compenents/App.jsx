@@ -11,7 +11,7 @@ import Login from "./user/Login";
 import VerifyEmail from "./user/EmailVerification/EmailVerificationPage";
 import Homepage from "./pages/Homepage";
 import ForgotPassword from './user/ForgotPassword';
-import CreatePassword from "./user/CreatePassword"
+import CreatePassword from "./user/CreateNewPassword/CreatePassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
