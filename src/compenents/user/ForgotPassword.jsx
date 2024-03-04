@@ -1,10 +1,15 @@
-import { Typography, Box, Button, Paper } from '@mui/material'
-import React, {useState} from 'react'
+import { Typography, Box, Button, Paper } from '@mui/material';
+import React, {useState} from 'react';
+import axios from "axios";
+import {useLocation,useNavigate} from "react-router-dom";
+
 
 function ForgotPassword() {
     const [userEmail, setUserEmail] = useState(""); 
     const [error, setError] = useState("");
 
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -17,14 +22,27 @@ function ForgotPassword() {
 
     }
 
-
-    const handleSubmit = (event) => {
+    
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
+
         if(!validateEmail(userEmail)) {
-            setError("Invalid email format");
+            setError("Please enter a valid email");
         } else {
             setError("");
+        } 
+        try {
+            const response = await axios.post("/api/forgotPassword", userEmail);
+            if(response.status === 200) {
+                navigate(
+                    location?.state?.previousUrl ? 
+                    location.state.previousUrl : 
+                    "/verifyEmail"
+                )
+            }
+        } catch (error) {
+            console.error("Error occured");
         }
     }
 

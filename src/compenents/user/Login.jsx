@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import { Box, Button, Typography, Paper } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";

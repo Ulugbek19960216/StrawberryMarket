@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Box, styled, Typography, Paper } from '@mui/material';
 import axios from 'axios';
 
@@ -16,6 +16,8 @@ function Register() {
         confirmPassword: '',
     });
     const [isHide, setIsHide] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,6 +33,11 @@ function Register() {
             const response = await axios.post('/api/register', formData);
             if (response.status === 200) {
                 console.log('Registration successful:', response.data);
+                navigate(
+                    location?.state?.previousUrl ? 
+                    location.state.previousUrl : 
+                    "/verifyEmail"
+                )
             }
         } catch (error) {
             console.error('Registration failed: ', error.message);
