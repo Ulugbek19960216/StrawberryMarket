@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 // importing components:
 import PasswordHeader from './PasswordHeader';
 import PasswordForm from './PasswordForm';
+import SaveButton from "./SaveButton";
+import CancelButton from "./CancelButton";
 
 
 const CreatePassword = props => {
@@ -58,29 +60,8 @@ const CreatePassword = props => {
                 display: "flex",
                 justifyContent: "end"
             }}>
-                 <Button variant='contained' sx={{
-                    width: "84px",
-                    height: "40px",
-                    marginRight: "10px",
-                    borderRadius: "12px",
-                    backgroundColor: "#E8E8F2",
-                    textTransform: "none",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    letterSpacing: "0.24px",
-                    '&:hover': {backgroundColor: "#E8E8F2"}
-                }}><NavLink style={{textDecoration: "none", color: "black"}} to="/" >Cancel</NavLink></Button>
-                <Button variant='contained' sx={{
-                    width: "84px",
-                    height: "40px",
-                    borderRadius: "12px",
-                    backgroundColor: "#F20D33",
-                    textTransform: "none",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                    letterSpacing: "0.24px",
-                    '&:hover': {backgroundColor: "#F20D33"}
-                }}><NavLink style={{textDecoration: "none", color: "white"}} to="/" >Save</NavLink></Button>
+                <CancelButton/>
+                <SaveButton/>
             </Box>
         </Paper>
     </Box>
