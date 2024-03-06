@@ -113,6 +113,7 @@ function Register() {
                     </StyledText>
                     <AuthIcons />
                     <NavLink to="/verifyEmail">VerifyEmail</NavLink>
+                    <NavLink to="/locationSearch">Location</NavLink>
                 </Paper>
             </Box>
         </Box>

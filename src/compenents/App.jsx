@@ -12,6 +12,7 @@ import VerifyEmail from "./user/EmailVerification/EmailVerificationPage";
 import Homepage from "./pages/Homepage";
 import ForgotPassword from './user/ForgotPassword';
 import CreatePassword from "./user/CreateNewPassword/CreatePassword";
+import Location from "./user/LocationSearch/LocationSearch";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="passwordRecovery" element={<ForgotPassword/>}/>
       <Route path="verifyEmail" element={<VerifyEmail/>}/>
       <Route path="verifyEmail/createPassword" element={<CreatePassword/>}/>
+      <Route path="locationSearch" element={<Location/>}/>
       <Route path="Homepage" element={<Homepage/>}/>
     </Route>
   )

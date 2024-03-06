@@ -2,7 +2,7 @@
 // Import statements
 import React, { useState, useRef, useEffect } from 'react';
 import { Typography, Box, Button, Paper } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios";
 
 // Importing components
@@ -22,11 +22,16 @@ function ConfirmationEmail() {
         return storedTimer ? parseInt(storedTimer) : 120;
     });
     const [intervalId, setIntervalId] = useState(null);
+    const navigate = useNavigate();
+    const location = useLocation(); 
 
     const fetchOTP = async () => {
         try {
             const response = await axios.get("api/otp");
             setOTP(response.data);
+            if(code === otp) {
+                navigate(location?.state?.previousUrl ? location.state.previousUrl : "/");
+            }
         } catch (error) {
             console.error("Error fetching OTP: ", error);
         }

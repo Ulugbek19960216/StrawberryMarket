@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { Box, Button, Paper } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Box,  Paper } from '@mui/material';
+import {useNavigate, useLocation} from "react-router-dom";
+import axios from "axios";
 
 // importing components:
 import PasswordHeader from './PasswordHeader';
@@ -16,6 +17,8 @@ const CreatePassword = props => {
     });
 
     const [isHiden, setIsHiden] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleChangePassword = (event) => {
         const {value, name} = event.target;
@@ -26,7 +29,18 @@ const CreatePassword = props => {
 
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post("/api/createNewPassword", formPassword.password);
+            if(response.status === 200) {
+                navigate(location?.state?.previousUrl ? location.state.previousUrl : "/")
+            }
+        } catch {
+            console.error("Error occured");
+        }
+       
+
 
     }
 
