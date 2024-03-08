@@ -25,7 +25,7 @@ function LocationSearch() {
             display: "flex",
             flexDirection: "column",
             backgroundColor: "white",
-            width: "525px",
+            width: "512px",
             height: "700px",
             borderRadius: "20px",
             padding: "20px 0px"

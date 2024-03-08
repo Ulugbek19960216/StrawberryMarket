@@ -1,14 +1,13 @@
 import { Typography, Box, Button, Paper } from '@mui/material';
 import React, {useState} from 'react';
 import axios from "axios";
-import {useLocation,useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 function ForgotPassword() {
     const [userEmail, setUserEmail] = useState(""); 
     const [error, setError] = useState("");
 
-    const location = useLocation();
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -25,7 +24,7 @@ function ForgotPassword() {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        navigate("/verifyEmail", {state: {mode: "ForgotPassword"}})
 
         if(!validateEmail(userEmail)) {
             setError("Please enter a valid email");
@@ -35,11 +34,7 @@ function ForgotPassword() {
         try {
             const response = await axios.post("/api/forgotPassword", userEmail);
             if(response.status === 200) {
-                navigate(
-                    location?.state?.previousUrl ? 
-                    location.state.previousUrl : 
-                    "/verifyEmail"
-                )
+                navigate("/verifyEmail", {state: {mode: "forgotPassword"}})
             }
         } catch (error) {
             console.error("Error occured");

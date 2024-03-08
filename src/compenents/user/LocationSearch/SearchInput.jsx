@@ -8,8 +8,11 @@ function SearchInput() {
   return (
     <Box sx={{
         width: "512px",
-        height: "72px",
-        padding: "10px 20px "
+        height: "62px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        p: "10px 0"
     }}>
         <Box sx={{
             display: "flex",

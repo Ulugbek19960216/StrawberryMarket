@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Box, styled, Typography, Paper } from '@mui/material';
 import axios from 'axios';
 
@@ -16,7 +16,6 @@ function Register() {
         confirmPassword: '',
     });
     const [isHide, setIsHide] = useState(false);
-    const location = useLocation();
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -26,23 +25,25 @@ function Register() {
             setIsHide(!!value);
         }
     };
-
+    
     const handleSubmit = async (e) => {
+        navigate("/verifyEmail", {state: {mode: "Register"}})
+        localStorage.setItem("Email", JSON.stringify(formData.email))
         e.preventDefault();
         try {
             const response = await axios.post('/api/register', formData);
             if (response.status === 200) {
                 console.log('Registration successful:', response.data);
-                navigate(
-                    location?.state?.previousUrl ? 
-                    location.state.previousUrl : 
-                    "/verifyEmail"
-                )
+                
+                navigate("/verifyEmail", {state: {mode: "Register"}})
             }
         } catch (error) {
             console.error('Registration failed: ', error.message);
         }
     };
+
+
+
 
     const StyledText = styled(Typography)({
         color: '#9C4A57',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import { Box, Button, Typography, Paper } from "@mui/material";
 import Logo from "./Partials/Logo";
 import AuthIcons from "./Partials/AuthIcons";
@@ -37,6 +37,10 @@ const [formData, setFormData] = useState({
     password: "",
 });
 
+const location = useLocation();
+const navigate = useNavigate();
+
+
 const [error, setError] = useState("");
 
 function handleChange(event){
@@ -55,7 +59,11 @@ const handleLogin = async (email, password) => {
         const data = response.data;
         if(response.status === 200) {
             Cookies.set("token", data.Accesstoken, { secure: true, sameSite: "strict"});
-            // Redirect to hompage
+            navigate(
+                location?.state?.previousUrl ? 
+                location.state.previousUrl : 
+                "/Loction"
+            )
         } else {
             setError(data.message || "Login failed");
         }

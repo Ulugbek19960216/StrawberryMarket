@@ -14,6 +14,7 @@ import ForgotPassword from './user/ForgotPassword';
 import CreatePassword from "./user/CreateNewPassword/CreatePassword";
 import Location from "./user/LocationSearch/LocationSearch";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>

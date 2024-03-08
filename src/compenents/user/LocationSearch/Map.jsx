@@ -1,26 +1,53 @@
-import React from 'react'
-import {Box} from "@mui/material";
-// const ymaps3Reactify = await ymaps3.import('@yandex/ymaps3-reactify');
-// const reactify = ymaps3Reactify.reactify.bindTo(React, ReactDOM);
-// const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker} = reactify.module(ymaps3);
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import React from "react";
+import {Box} from "@mui/material"
 
+
+
+const libraries = ['places'];
+const mapContainerStyle = {
+  width: '480px',
+  height: '100%',
+  borderRadius: "24px"
+};
+const center = {
+  lat: 51.5072, // default latitude
+  lng: 0.1276, // default longitude
+};
 
 
 const MapComponent = () => {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyCNCf5okYPi6OMy5KGnLbox9Kbc_xI2vlM",
+    libraries,
+  });
+
+  if (loadError) {
+    return <div>Error loading maps</div>;
+  }
+
+  if (!isLoaded) {
+    return <div>Loading maps</div>;
+  }
 
   return (
-    <Box></Box>
-      // <YMap location={{center: [25.229762, 55.289311], zoom: 9}} mode="vector">
-      //   <YMapDefaultSchemeLayer />
-      //   <YMapDefaultFeaturesLayer />
+    <Box sx={{
+      width: "512px",
+      height: "470px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      p: "10px 0"
+    }}>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={10}
+        center={center}
+      >
+        <Marker position={center} />
+      </GoogleMap>
+    </Box>
+  );
+};
 
-      //   <YMapMarker coordinates={[25.229762, 55.289311]} draggable={true}>
-      //     <section>
-      //       <h1>You can drag this header</h1>
-      //     </section>
-      //   </YMapMarker>
-      // </YMap>
-  )
-}
-
-export default MapComponent
+export default MapComponent;
