@@ -27,14 +27,12 @@ function Register() {
     };
     
     const handleSubmit = async (e) => {
-        navigate("/verifyEmail", {state: {mode: "Register"}})
-        localStorage.setItem("Email", JSON.stringify(formData.email))
         e.preventDefault();
         try {
             const response = await axios.post('/api/register', formData);
             if (response.status === 200) {
-                console.log('Registration successful:', response.data);
-                
+                localStorage.setItem("Email", JSON.stringify(formData.email))
+                console.log('Registration successful:', response.data); 
                 navigate("/verifyEmail", {state: {mode: "Register"}})
             }
         } catch (error) {

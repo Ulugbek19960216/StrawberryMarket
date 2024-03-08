@@ -24,7 +24,6 @@ function ForgotPassword() {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        navigate("/verifyEmail", {state: {mode: "ForgotPassword"}})
 
         if(!validateEmail(userEmail)) {
             setError("Please enter a valid email");
@@ -34,7 +33,8 @@ function ForgotPassword() {
         try {
             const response = await axios.post("/api/forgotPassword", userEmail);
             if(response.status === 200) {
-                navigate("/verifyEmail", {state: {mode: "forgotPassword"}})
+                localStorage.setItem("Email", JSON.stringify(userEmail));
+                navigate("/verifyEmail", {state: {mode: "ForgotPassword"}})
             }
         } catch (error) {
             console.error("Error occured");

@@ -11,7 +11,7 @@ import ResendButton from './ResendButton';
 import Header from "./Header";
 import OtpInputSection from './OtpInputSection';
 
-function ConfirmationEmail({mode}) {
+function ConfirmationEmail() {
     const [code, setCode] = useState(["", "", "", ""]);
     const [otpError, setOtpError] = useState(null);
     const otpBoxReference = useRef([]);
@@ -24,40 +24,44 @@ function ConfirmationEmail({mode}) {
     const navigate = useNavigate(); 
     const location = useLocation(); 
     const userEmail = JSON.parse(localStorage.getItem("Email"));
+    const mode = location.state.mode;
 
     const form = {
         Email: userEmail,
         Code:  code.join("")
     }
-        const fetchOTP = async () => {
-        
-            try {
-                const response = await axios.post("api/otp", form);
-                
-                if(response.status === 200) {
-                    navigate(location?.state?.previousUrl ? location.state.previousUrl : "/");
-                } else if (response.status === 400) {
-                    setOtpError("❌ Wrong OTP Please Check Again");
-                }
-            } catch  {
-                setOtpError("❌ Wrong OTP Please Check Again");
-            }
-    };
 
-    const fetchPassword = async () => {
-        
+    const fetchOTP = async () => {
         try {
-            const response = await axios.get("api/otp");
-            
+             const response = await axios.post("api/otp", form);  
             if(response.status === 200) {
-                navigate(location?.state?.previousUrl ? location.state.previousUrl : "/verifyEmail/createPassword");
+                if(mode === "Register") {
+                    navigate(location?.state?.previousUrl ? location.state.previousUrl : "/");
+                } else {
+                    navigate("/verifyEmail/createPassword");
+                }
+                    
             } else if (response.status === 400) {
                 setOtpError("❌ Wrong OTP Please Check Again");
             }
         } catch  {
-            setOtpError("❌ Wrong OTP Please Check Again");
+                setOtpError("❌ Wrong OTP Please Check Again");
         }
-};
+    };
+
+    useEffect(() => {
+        let enteredOTP = code.join("");
+        let isMounted = true;
+
+        if(enteredOTP.length === 4 && isMounted) {
+            fetchOTP();
+        }
+
+        return () => {
+            isMounted = false;
+        };
+
+    }, [code])
 
     const handleInputChange = (index, value) => {
         if (value === "" || (value.length === 1 && /^\d$/.test(value))) {
@@ -80,16 +84,9 @@ function ConfirmationEmail({mode}) {
         }
     };
 
-    if(code.join("").length === 4) {
-        if(mode === "Register") {
-            console.log(mode);
-            fetchOTP();
-        } else if (mode === "ForgotPassword" ) {
-             fetchPassword();
-        } else {
-            setOtpError("❌ Wrong OTP Please Check Again");
-        }
-    }
+   
+
+    
     useEffect(() => {
         const id = setInterval(() => {
             if (timer > 0) {
