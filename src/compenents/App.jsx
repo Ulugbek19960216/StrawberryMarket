@@ -13,6 +13,7 @@ import Homepage from "./pages/Homepage";
 import ForgotPassword from './user/ForgotPassword';
 import CreatePassword from "./user/CreateNewPassword/CreatePassword";
 import Location from "./user/LocationSearch/LocationSearch";
+import InterestCategory from "./user/InterestCategory/MainIntersts";
 
 
 const router = createBrowserRouter(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="verifyEmail/createPassword" element={<CreatePassword/>}/>
       <Route path="locationSearch" element={<Location/>}/>
       <Route path="Homepage" element={<Homepage/>}/>
+      <Route path="interestCategory" element={<InterestCategory/>}/>
     </Route>
   )
 )

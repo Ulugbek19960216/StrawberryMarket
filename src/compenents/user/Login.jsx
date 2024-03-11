@@ -128,6 +128,7 @@ const handleSubmit = (event) => {
                     <Typography sx={textStyle}>Or continue with</Typography>
                 </Box>
                 <AuthIcons/>
+                <Typography><NavLink to="interestCategory">ChooseInterests</NavLink></Typography>
                 
             </Paper>
         </Box>
