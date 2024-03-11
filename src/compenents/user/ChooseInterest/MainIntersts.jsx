@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box} from "@mui/material"
+import {Box, Paper} from "@mui/material"
 
 import Category from "./Categories";
 import Header from "./Header";
@@ -17,20 +17,31 @@ const MainIntersts = () => {
                 backgroundColor: "#F7FAFC"
             }}
         >
-            <Box 
+            <Paper
+                elevation={4} 
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    padding: "0px 10px",
+                    padding: "20px 10px",
                     width: "541px",
-                    height: "541px"
+                    height: "541px",
+                    backgroundColor: "white",
+                    borderRadius: "20px"
                 }}
             >
                 <Header/>
                 <Category/>
-                <SkipButton/>
-                <NextButton/>
-            </Box>
+                <Box sx={{
+                    width: "512px",
+                    height: "64px",
+                    display: "flex",
+                    justifyContent: "end",
+                    gap: "10px",
+                }}>
+                    <SkipButton/>
+                    <NextButton/>
+                </Box>
+            </Paper>
         </Box>
   )
 }

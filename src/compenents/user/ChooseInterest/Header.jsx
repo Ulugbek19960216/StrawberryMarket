@@ -6,14 +6,31 @@ const Header = () => {
     <Box 
         sx={{
             width: "512px",
-            height: "116px"
+            height: "116px",
+            marginTop: "20px"
+
         }} 
     >
         <Box sx={{
-            
+            textAlign: "center"
         }}>
-            <Typography varient="h1" sx={{fontWeight: "bold"}}gutterBottom>Choose at least 3 interests</Typography>
-            <Typography varient="h5">We'll help you what you love...</Typography>
+            <Typography 
+              varient="h1" 
+              gutterBottom
+              sx={{ 
+                fontFamily: "Work Sans",
+                fontWeight: "700",
+                fontSize: "32px"
+              }}
+              >Choose at least 3 interests</Typography>
+            <Typography 
+                varient="h5"
+                sx={{
+                  fontFamily: "Manrope",
+                  fontWeight: "bold"
+                }}
+              > We'll help you what you love...
+            </Typography>
         </Box>
     </Box>
   )
