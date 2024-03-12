@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box, Button, Typography} from "@mui/material";
+import {NavLink} from "react-router-dom";
 
 const NextButton = () => {
   return (
@@ -19,7 +20,9 @@ const NextButton = () => {
               fontSize: "14px",
               fontWeight: "bold"
               }}>
-                Next
+                <NavLink to="/homepage" style={{textDecoration: "none", color: "white"}}>
+                  Next
+                </NavLink>
           </Typography>
         </Button>
     </Box>
