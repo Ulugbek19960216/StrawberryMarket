@@ -1,22 +1,36 @@
 import React from 'react'
-import {AppBar, Box, Toolbar, IconButton, Typography, MenuItem, Menu} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import {createTheme, ThemeProvider, useMediaQuery} from "@mui/material";
 
 
-const Menu = ({menuId, handleProfileMenuOpen}) => {
-   
+
+
+import DesktopMenu from "./DesktopScreen/Desktop";
+
+
+
+const Menu = () => {
+const path = process.env.PUBLIC_URL;
+
+const isDesktop = useMediaQuery('(min-width: 1150px)');
+
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
+
   return (
-    <IconButton
-    size="small"
-    edge="end"
-    aria-label="account of current user"
-    aria-controls={menuId}
-    aria-haspopup="true"
-    onClick={handleProfileMenuOpen}
-    color="inherit"
-  >
-  <MenuIcon sx={{color: "black", width: "30px", height: "35px"}}/>
-  </IconButton>
+    <ThemeProvider theme={theme}>
+      {isDesktop && <DesktopMenu menuIcon={path + "/icons/menuIcon.svg"}/>}
+    </ThemeProvider>
+
   )
 }
 
