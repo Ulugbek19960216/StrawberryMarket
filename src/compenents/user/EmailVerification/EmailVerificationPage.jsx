@@ -24,7 +24,7 @@ function ConfirmationEmail() {
     const navigate = useNavigate(); 
     const location = useLocation(); 
     const userEmail = JSON.parse(localStorage.getItem("Email"));
-    const mode = location.state.mode;
+    const mode = location.state?.mode;
 
     const form = {
         Email: userEmail,
@@ -198,6 +198,7 @@ function ConfirmationEmail() {
                         disabled={localStorage.getItem('timer') > 0}
                     />
                 </Box>
+                <NavLink to="CreatePassword">CreateNewPassword</NavLink>
             </Paper>
         </Box>
     );
