@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/StrawberryMarket/static/js/main.2be9b68a.js",
+    "index.html": "/StrawberryMarket/index.html",
+    "main.2be9b68a.js.map": "/StrawberryMarket/static/js/main.2be9b68a.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.2be9b68a.js"
+  ]
+}
